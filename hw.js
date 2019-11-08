@@ -30,7 +30,7 @@
     let axesLimits = findMinMax(fertility_rate_data, life_expectancy_data);
 
     // draw axes and return scaling + mapping functions
-    let mapFunctions = drawAxes(axesLimits, "fertility", "life_expectancy");
+    let mapFunctions = drawAxes(axesLimits, "Fertility", "Life_expectancy");
 
     // plot data as points and add tooltip functionality
     plotData(mapFunctions);
