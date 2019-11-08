@@ -37,32 +37,6 @@
 
     // draw title and axes labels
     makeLabels();
-
-    // add dropdown menu
-    let dropDown = d3.select("#filter").append("select")
-        .attr("name", "time");
-
-    // add options to dropdown menu
-    var options = dropDown.selectAll("option")
-        .data(data)
-        .enter()
-        .append("option");
-
-    options.text(function (d) { return d.time; })
-        .attr("value", function (d) { return d.time; });
-
-    // add filter functionality to dropdown menu
-    dropDown.on("change", function() {
-        // remove previous points
-        svgContainer.selectAll('.point').remove();
-
-        // change filtered data
-        let year = this.value;
-        filteredData = csvData.filter((row) => row.time == year);
-
-        //plot new points
-        plotData(mapFunctions);
-    });
   }
 
   // make title and axes labels
@@ -71,7 +45,7 @@
       .attr('x', 100)
       .attr('y', 40)
       .style('font-size', '14pt')
-      .text("Life Expectancy vs Fertility Rate");
+      .text("Fertility vs Life Expectancy (1980)");
 
     svgContainer.append('text')
       .attr('x', 130)
@@ -89,7 +63,7 @@
   // and add tooltip functionality
   function plotData(map) {
     // get population data as array
-    let pop_data = filteredData.map((row) => +row["pop_mlns"]);
+    let pop_data = filteredData.map((row) => +row["population"]);
     let pop_limits = d3.extent(pop_data);
     // make size scaling function for population
     let pop_map_func = d3.scaleLinear()
