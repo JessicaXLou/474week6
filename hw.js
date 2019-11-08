@@ -89,22 +89,14 @@
         .attr('class', 'point')
         .attr('cx', xMap)
         .attr('cy', yMap)
-        .attr('r', (d) => pop_map_func(d["pop_mlns"]))
+        .attr('r', (d) => pop_map_func(d["population"]))
         .attr('fill', "#4286f4")
         // add tooltip functionality to points
         .on("mouseover", (d) => {
           div.transition()
             .duration(200)
             .style("opacity", .9);
-          div.html("Country: " + d.location + 
-                    "<br/>" + 
-                    "Population: " + numberWithCommas(d["pop_mlns"]*1000000) + 
-                    "<br/>" + 
-                    "Year: " + d.time + 
-                    "<br/>" + 
-                    "Life Expectancy: " + d["life_expectancy"] + 
-                    "<br/>" + 
-                    "Fertility: " + d["fertility_rate"])
+          div.html("")
             .style("left", (d3.event.pageX) + "px")
             .style("top", (d3.event.pageY - 28) + "px");
         })
