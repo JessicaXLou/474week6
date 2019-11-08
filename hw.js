@@ -13,24 +13,24 @@
       .attr('width', 500)
       .attr('height', 500);
     // d3.csv is basically fetch but it can be be passed a csv file as a parameter
-    d3.csv("dataEveryYear.csv")
+    d3.csv("gapminder.csv")
       .then((data) => makeScatterPlot(data));
   }
 
   // make scatter plot with trend line
   function makeScatterPlot(csvData) {
     data = csvData; // assign data as global variable
-    filteredData = csvData.filter((row) => row.time == 1960);
+    filteredData = csvData.filter((row) => row.year == 1980);
 
     // get arrays of fertility rate data and life Expectancy data
-    let fertility_rate_data = data.map((row) => parseFloat(row["fertility_rate"]));
-    let life_expectancy_data = data.map((row) => parseFloat(row["life_expectancy"]));
+    let fertility_rate_data = data.map((row) => parseFloat(row["Fertility"]));
+    let life_expectancy_data = data.map((row) => parseFloat(row["Life_expectancy"]));
 
     // find data limits
     let axesLimits = findMinMax(fertility_rate_data, life_expectancy_data);
 
     // draw axes and return scaling + mapping functions
-    let mapFunctions = drawAxes(axesLimits, "fertility_rate", "life_expectancy");
+    let mapFunctions = drawAxes(axesLimits, "fertility", "life_expectancy");
 
     // plot data as points and add tooltip functionality
     plotData(mapFunctions);
