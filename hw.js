@@ -187,7 +187,9 @@
     let population_data = lineGraphData.map((row) => parseFloat(row["population"]));
 
     let axesLimits = findMinMax(year_data, population_data);
-    //let mapFunctions = lineGraphAxes(axesLimits, "year", "population");
+    let lineGraphFunctions = lineGraphAxes(axesLimits, "year", "population");
+
+    plotLineGraph(lineGraphFunctions);
 
     tooltip.append('text')
       .attr('x', 100)
@@ -205,6 +207,54 @@
       .attr('transform', 'translate(15, 300)rotate(-90)')
       .style('font-size', '10pt')
       .text('Population');
+  }
+
+  function lineGraphAxes(limits, xAxis, yAxis) {
+    // return x value from a row of data
+    let xValue = function(d) { return +d[x]; }
+
+    // function to scale x value
+    let xScale = d3.scaleLinear()
+      .domain([limits.xMin - 0.5, limits.xMax + 0.5]) // give domain buffer room
+      .range([50, 450]);
+
+    // xMap returns a scaled x value from a row of data
+    let xMap = function(d) { return xScale(xValue(d)); };
+
+    // plot x-axis at bottom of SVG
+    let xAxis = d3.axisBottom().scale(xScale);
+    tooltip.append("g")
+      .attr('transform', 'translate(0, 450)')
+      .call(xAxis);
+
+    // return y value from a row of data
+    let yValue = function(d) { return +d[y]}
+
+    // function to scale y
+    let yScale = d3.scaleLinear()
+      .domain([limits.yMax + 5, limits.yMin - 5]) // give domain buffer
+      .range([50, 450]);
+
+    // yMap returns a scaled y value from a row of data
+    let yMap = function (d) { return yScale(yValue(d)); };
+
+    // plot y-axis at the left of SVG
+    let yAxis = d3.axisLeft().scale(yScale);
+    tooltip.append('g')
+      .attr('transform', 'translate(50, 0)')
+      .call(yAxis);
+
+    // return mapping and scaling functions
+    return {
+      x: xMap,
+      y: yMap,
+      xScale: xScale,
+      yScale: yScale
+    };
+  }
+
+  function plotLineGraph(lineGraphFunctions) {
+
   }
 
 })();
