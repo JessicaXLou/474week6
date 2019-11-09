@@ -23,14 +23,14 @@
     filteredData = csvData.filter((row) => row.year == 1980);
 
     // get arrays of fertility rate data and life Expectancy data
-    let fertility_rate_data = data.map((row) => parseFloat(row["Fertility"]));
-    let life_expectancy_data = data.map((row) => parseFloat(row["Life_expectancy"]));
+    let fertility_rate_data = data.map((row) => parseFloat(row["fertility"]));
+    let life_expectancy_data = data.map((row) => parseFloat(row["life_expectancy"]));
 
     // find data limits
     let axesLimits = findMinMax(fertility_rate_data, life_expectancy_data);
 
     // draw axes and return scaling + mapping functions
-    let mapFunctions = drawAxes(axesLimits, "Fertility", "Life_expectancy");
+    let mapFunctions = drawAxes(axesLimits, "fertility", "life_expectancy");
 
     // plot data as points and add tooltip functionality
     plotData(mapFunctions);
@@ -63,7 +63,7 @@
   // and add tooltip functionality
   function plotData(map) {
     // get population data as array
-    let pop_data = filteredData.map((row) => +row["Population"]);
+    let pop_data = filteredData.map((row) => +row["population"]);
     let pop_limits = d3.extent(pop_data);
     // make size scaling function for population
     let pop_map_func = d3.scaleLinear()
@@ -89,7 +89,7 @@
         .attr('class', 'point')
         .attr('cx', xMap)
         .attr('cy', yMap)
-        .attr('r', (d) => pop_map_func(d["Population"]))
+        .attr('r', (d) => pop_map_func(d["population"]))
         .attr('fill', "#4286f4")
         // add tooltip functionality to points
         .on("mouseover", (d) => {
