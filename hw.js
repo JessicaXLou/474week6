@@ -259,7 +259,8 @@
       .y(function(d) { return lineGraphFunctions.yScale(d.y); }) // set the y values for the line generator 
       .curve(d3.curveMonotoneX) // apply smoothing to the line
 
-    let dataset = "";
+    let n = 56;
+    let dataset = d3.range(n).map(function(d) { return {"y": d3.randomUniform(1)() } })
 
     tooltip.append("path")
       .datum(dataset) // 10. Binds data to the line 
