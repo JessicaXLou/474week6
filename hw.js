@@ -209,7 +209,7 @@
       .text('Population');
   }
 
-  function lineGraphAxes(limits, xAxis, yAxis) {
+  function lineGraphAxes(limits, x, y) {
     // return x value from a row of data
     let xValue = function(d) { return +d[x]; }
 
