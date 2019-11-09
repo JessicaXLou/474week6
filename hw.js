@@ -78,7 +78,7 @@
     // make tooltip
     tooltip = d3.select("body").append("svg")
     .attr("class", "tooltip")
-    .attr('width', 500)
+    .attr('width', 550)
     .attr('height', 500)
     .style("opacity", 0);
 
@@ -216,7 +216,7 @@
     // function to scale x value
     let xScale = d3.scaleLinear()
       .domain([limits.xMin - 0.5, limits.xMax + 0.5]) // give domain buffer room
-      .range([50, 450]);
+      .range([100, 500]);
 
     // xMap returns a scaled x value from a row of data
     let xMap = function(d) { return xScale(xValue(d)); };
@@ -254,7 +254,7 @@
   }
 
   function plotLineGraph(lineGraphFunctions) {
-
+    let numDataPoints = 56;
   }
 
 })();
