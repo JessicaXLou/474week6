@@ -254,14 +254,12 @@
   }
 
   function plotLineGraph(lineGraphFunctions) {
-    let n = 56;
-
     let line = d3.line()
-      .x(function(d, i) { return xScale(i); }) // set the x values for the line generator
-      .y(function(d) { return yScale(d.y); }) // set the y values for the line generator 
+      .x(function(d, i) { return lineGraphFunctions.xScale(i); }) // set the x values for the line generator
+      .y(function(d) { return lineGraphFunctions.yScale(d.y); }) // set the y values for the line generator 
       .curve(d3.curveMonotoneX) // apply smoothing to the line
 
-    var dataset = d3.range(n).map(function(d) { return {"y": d3.randomUniform(1)() } })
+    let dataset = "";
 
     tooltip.append("path")
       .datum(dataset) // 10. Binds data to the line 
@@ -272,8 +270,8 @@
         .data(dataset)
       .enter().append("circle") // Uses the enter().append() method
         .attr("class", "dot") // Assign a class for styling
-        .attr("cx", function(d, i) { return xScale(i) })
-        .attr("cy", function(d) { return yScale(d.y) })
+        .attr("cx", function(d, i) { return lineGraphFunctions.xScale(i) })
+        .attr("cy", function(d) { return lineGraphFunctions.yScale(d.y) })
         .attr("r", 5)
   }
 
