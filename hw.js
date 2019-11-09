@@ -233,7 +233,7 @@
     // function to scale y
     let yScale = d3.scaleLinear()
       .domain([limits.yMax + 5, limits.yMin - 5]) // give domain buffer
-      .range([100, 450]);
+      .range([100, 500]);
 
     // yMap returns a scaled y value from a row of data
     let yMap = function (d) { return yScale(yValue(d)); };
