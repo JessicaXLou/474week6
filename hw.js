@@ -263,12 +263,12 @@
 
     var dataset = d3.range(n).map(function(d) { return {"y": d3.randomUniform(1)() } })
 
-    svg.append("path")
+    tooltip.append("path")
       .datum(dataset) // 10. Binds data to the line 
       .attr("class", "line") // Assign a class for styling 
       .attr("d", line); // 11. Calls the line generator 
 
-    svg.selectAll(".dot")
+    tooltip.selectAll(".dot")
         .data(dataset)
       .enter().append("circle") // Uses the enter().append() method
         .attr("class", "dot") // Assign a class for styling
