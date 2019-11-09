@@ -184,8 +184,8 @@
     let year_data = lineGraphData.map((row) => parseFloat(row["year"]));
     let population_data = lineGraphData.map((row) => parseFloat(row["population"]));
 
-    let axesLimits = findMinMax(year_data_data, population_data);
-    let mapFunctions = lineGraphAxes(axesLimits, "year", "population");
+    let axesLimits = findMinMax(year_data, population_data);
+    //let mapFunctions = lineGraphAxes(axesLimits, "year", "population");
 
     tooltip.append('text')
       .attr('x', 100)
