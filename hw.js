@@ -89,7 +89,7 @@
         .attr('class', 'point')
         .attr('cx', xMap)
         .attr('cy', yMap)
-        .attr('r', (d) => pop_map_func(d["population"]))
+        .attr('r', (d) => pop_map_func(d["Population"]))
         .attr('fill', "#4286f4")
         // add tooltip functionality to points
         .on("mouseover", (d) => {
