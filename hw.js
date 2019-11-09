@@ -268,7 +268,7 @@
 
     tooltip.selectAll(".dot")
         .data(dataset)
-      .enter().append("circle") // Uses the enter().append() method
+        .append("circle") // Uses the enter().append() method
         .attr("class", "dot") // Assign a class for styling
         .attr("cx", function(d, i) { return lineGraphFunctions.xScale(i) })
         .attr("cy", function(d) { return lineGraphFunctions.yScale(d.y) })
