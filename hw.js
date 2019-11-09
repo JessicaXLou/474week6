@@ -180,6 +180,8 @@
 
   // make line graph in tooltip
   function makeLineGraph(country) {
+    tooltip.selectAll("*").remove();
+
     let lineGraphData = data.filter((row) => row.country == country);
     let year_data = lineGraphData.map((row) => parseFloat(row["year"]));
     let population_data = lineGraphData.map((row) => parseFloat(row["population"]));
