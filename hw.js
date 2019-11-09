@@ -96,7 +96,7 @@
           div.transition()
             .duration(200)
             .style("opacity", .9);
-          div.html("")
+          div.html("test")
             .style("left", (d3.event.pageX) + "px")
             .style("top", (d3.event.pageY - 28) + "px");
         })
