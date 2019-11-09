@@ -188,6 +188,23 @@
 
     let axesLimits = findMinMax(year_data_data, population_data);
     let mapFunctions = lineGraphAxes(axesLimits, "year", "population");
+
+    tooltip.append('text')
+      .attr('x', 100)
+      .attr('y', 40)
+      .style('font-size', '14pt')
+      .text("Year vs Population (" + country + ")");
+
+    tooltip.append('text')
+      .attr('x', 130)
+      .attr('y', 490)
+      .style('font-size', '10pt')
+      .text('Year');
+
+    tooltip.append('text')
+      .attr('transform', 'translate(15, 300)rotate(-90)')
+      .style('font-size', '10pt')
+      .text('Population');
   }
 
 })();
