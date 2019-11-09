@@ -2,6 +2,7 @@
 
 (function() {
 
+  let data = "no data";
   let filteredData = "no data"
   let svgContainer = ""; // keep SVG reference in global scope
 
@@ -18,11 +19,12 @@
 
   // make scatter plot with trend line
   function makeScatterPlot(csvData) {
-    filteredData = csvData.filter((row) => row["Year"] == "1980");
+    data = csvData; // assign data as global variable
+    filteredData = csvData.filter((row) => row.year == 1980);
 
     // get arrays of fertility rate data and life Expectancy data
-    let fertility_rate_data = filteredData.map((row) => parseFloat(row["Fertility"]));
-    let life_expectancy_data = filteredData.map((row) => parseFloat(row["Life_expectancy"]));
+    let fertility_rate_data = data.map((row) => parseFloat(row["Fertility"]));
+    let life_expectancy_data = data.map((row) => parseFloat(row["Life_expectancy"]));
 
     // find data limits
     let axesLimits = findMinMax(fertility_rate_data, life_expectancy_data);
