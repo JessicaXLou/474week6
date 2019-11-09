@@ -5,6 +5,7 @@
   let data = "no data";
   let filteredData = "no data"
   let svgContainer = ""; // keep SVG reference in global scope
+  let tooltip = "";
 
   // load data and make scatter plot after window loads
   window.onload = function() {
@@ -75,8 +76,10 @@
     let yMap = map.y;
 
     // make tooltip
-    let div = d3.select("body").append("div")
+    tooltip = d3.select("body").append("svg")
     .attr("class", "tooltip")
+    .attr('width', 500)
+    .attr('height', 500)
     .style("opacity", 0);
 
 
@@ -93,15 +96,15 @@
         .attr('fill', "#4286f4")
         // add tooltip functionality to points
         .on("mouseover", (d) => {
-          div.transition()
+          tooltip.transition()
             .duration(200)
             .style("opacity", .9);
-          div.html("test")
+          tooltip.html("test")
             .style("left", (d3.event.pageX) + "px")
             .style("top", (d3.event.pageY - 28) + "px");
         })
         .on("mouseout", (d) => {
-          div.transition()
+          tooltip.transition()
             .duration(500)
             .style("opacity", 0);
         });
@@ -175,6 +178,16 @@
   // format numbers
   function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
+  // make line graph in tooltip
+  function makeLineGraph(country) {
+    lineGraphData = data.filter((row) => row.country == country);
+    let year_data = lineGraphData.map((row) => parseFloat(row["year"]));
+    let population_data = lineGraphData.map((row) => parseFloat(row["population"]));
+
+    let axesLimits = findMinMax(year_data_data, population_data);
+    let mapFunctions = lineGraphAxes(axesLimits, "year", "population");
   }
 
 })();
