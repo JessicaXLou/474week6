@@ -254,7 +254,27 @@
   }
 
   function plotLineGraph(lineGraphFunctions) {
-    let numDataPoints = 56;
+    let n = 56;
+
+    let line = d3.line()
+      .x(function(d, i) { return xScale(i); }) // set the x values for the line generator
+      .y(function(d) { return yScale(d.y); }) // set the y values for the line generator 
+      .curve(d3.curveMonotoneX) // apply smoothing to the line
+
+    var dataset = d3.range(n).map(function(d) { return {"y": d3.randomUniform(1)() } })
+
+    svg.append("path")
+      .datum(dataset) // 10. Binds data to the line 
+      .attr("class", "line") // Assign a class for styling 
+      .attr("d", line); // 11. Calls the line generator 
+
+    svg.selectAll(".dot")
+        .data(dataset)
+      .enter().append("circle") // Uses the enter().append() method
+        .attr("class", "dot") // Assign a class for styling
+        .attr("cx", function(d, i) { return xScale(i) })
+        .attr("cy", function(d) { return yScale(d.y) })
+        .attr("r", 5)
   }
 
 })();
